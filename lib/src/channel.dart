@@ -107,8 +107,9 @@ class WebSocketChannel extends StreamChannelMixin {
   /// communicate over the resulting socket.
   ///
   /// The optional [protocols] parameter is the same as `WebSocket.connect`.
-  factory WebSocketChannel.connect(Uri uri, {Iterable<String>? protocols}) =>
-      platform.connect(uri, protocols: protocols);
+  factory WebSocketChannel.connect(Uri uri,
+          {Iterable<String>? protocols, Function? onConnect}) =>
+      platform.connect(uri, protocols: protocols, onConnect: onConnect);
 }
 
 /// The sink exposed by a [WebSocketChannel].
