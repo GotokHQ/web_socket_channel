@@ -15,6 +15,8 @@ import '_connect_api.dart'
 import 'copy/web_socket_impl.dart';
 import 'exception.dart';
 
+typedef ConnectCallback = void Function();
+
 /// A [StreamChannel] that communicates over a WebSocket.
 ///
 /// This is implemented by classes that use `dart:io` and `dart:html`. The [new
@@ -108,7 +110,7 @@ class WebSocketChannel extends StreamChannelMixin {
   ///
   /// The optional [protocols] parameter is the same as `WebSocket.connect`.
   factory WebSocketChannel.connect(Uri uri,
-          {Iterable<String>? protocols, Function? onConnect}) =>
+          {Iterable<String>? protocols, ConnectCallback? onConnect}) =>
       platform.connect(uri, protocols: protocols, onConnect: onConnect);
 }
 

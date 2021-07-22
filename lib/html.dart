@@ -67,14 +67,14 @@ class HtmlWebSocketChannel extends StreamChannelMixin
   HtmlWebSocketChannel.connect(url,
       {Iterable<String>? protocols,
       BinaryType? binaryType,
-      Function? onConnect})
+      ConnectCallback? onConnect})
       : this(
             WebSocket(url.toString(), protocols)
               ..binaryType = (binaryType ?? BinaryType.list).value,
             onConnect: onConnect);
 
   /// Creates a channel wrapping [_webSocket].
-  HtmlWebSocketChannel(this._webSocket, {Function? onConnect}) {
+  HtmlWebSocketChannel(this._webSocket, {ConnectCallback? onConnect}) {
     if (_webSocket.readyState == WebSocket.OPEN) {
       onConnect?.call();
       _listen();

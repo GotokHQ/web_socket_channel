@@ -62,7 +62,7 @@ class IOWebSocketChannel extends StreamChannelMixin
     Iterable<String>? protocols,
     Map<String, dynamic>? headers,
     Duration? pingInterval,
-    Function? onConnect,
+    ConnectCallback? onConnect,
   }) {
     late IOWebSocketChannel channel;
     final sinkCompleter = WebSocketSinkCompleter();
@@ -72,7 +72,7 @@ class IOWebSocketChannel extends StreamChannelMixin
         webSocket.pingInterval = pingInterval;
         channel._webSocket = webSocket;
         sinkCompleter.setDestinationSink(_IOWebSocketSink(webSocket));
-        onConnect?.call(webSocket);
+        onConnect?.call();
         return webSocket;
       }).catchError(
         (Object error) => throw WebSocketChannelException.from(error),
